@@ -36,7 +36,7 @@ jobs:
         id: check_dockerfile
         run: |
           CURRENT_VERSION=$(grep -oP 'ARG UNBOUND_VERSION=\K[\d.]+' Dockerfile)
-          if [ "$CURRENT_VERSION" < "${{ env.VERSION }}" ]; then
+          if [ "$CURRENT_VERSION" -lt "${{ env.VERSION }}" ]; then
             echo "Dockerfile needs update"
             echo "UPDATE_DOCKERFILE=true" >> $GITHUB_ENV
           else
